@@ -24,7 +24,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export CATALINA_HOME=/usr/share/tomcat7
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
-export CATALINA_BASE=/usr/share/tomcat7
+export CATALINA_BASE=/var/lib/tomcat7
  
 #TOMCAT_USER is the default user of tomcat
 export TOMCAT_USER=tomcat

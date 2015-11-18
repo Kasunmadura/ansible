@@ -10,7 +10,7 @@ mail:kasunmaduraeng@gmail.com
 ## Standalone Tomcat Deployment
 
 - Requires Ansible 1.2 or newer
-- Expects Ubuntu hosts
+- Expects CentOS/RHEL 6.x hosts
 
 These playbooks deploy a very basic implementation of Tomcat Application Server,
 version 7. To use them, first edit the "hosts" inventory file to contain the

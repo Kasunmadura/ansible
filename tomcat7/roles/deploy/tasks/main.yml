@@ -7,7 +7,7 @@
 
 - name: Set correct permissions
   file: 
-    path: /var/lib/tomcat7/webapps/
+    path: /var/lib/tomcat7/webapps/productization.war
     owner: tomcat7
     group: tomcat7
   when: war_downloaded.changed
@@ -18,3 +18,14 @@
     name: tomcat7
     state: restarted
   when: war_deployed.changed
+
+- name: Set correct permissions app
+  file: 
+    path: /var/lib/tomcat7/webapps/ROOT
+    owner: tomcat7
+    group: tomcat7
+    recurse: yes
+    mode: 0755
+  when: war_downloaded.changed
+  register: war_deployed
+ 

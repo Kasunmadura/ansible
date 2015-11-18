@@ -10,8 +10,9 @@
   template: src=tomcat-users.xml dest=/var/lib/tomcat7/conf/
   notify: restart tomcat
 
-- name: Install Tomcat init script
-  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat7 mode=0755
+- name: Configure Tomcat setting 
+  template: src=tomcat7 dest=/etc/default/tomcat7
+  notify: restart tomcat
 
 - name: Start Tomcat
   service: name=tomcat7 state=started enabled=yes
