@@ -1,6 +1,6 @@
-# you can use this ansible example for automate your deployment#
+you can use this ansible example for automate your deployment#
 
-#Kasun Madura Rathnayaka
-#Devops Engineer 
-#site:http://kasunmadura.com
+Kasun Madura Rathnayaka
+Devops Engineer 
+site:http://kasunmadura.com
 
