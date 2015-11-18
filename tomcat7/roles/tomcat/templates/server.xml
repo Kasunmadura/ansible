@@ -129,7 +129,6 @@
             unpackWARs="true" autoDeploy="false" deployOnStartup="false" >
 
         <Context path="" docBase="productization"/>
-        <Context path="productization-etl" docBase="productization-etl" />
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
