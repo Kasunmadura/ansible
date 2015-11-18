@@ -1,0 +1,12 @@
+---
+# This playbook deploys a simple standalone Tomcat 7 server. 
+
+- hosts: webservers
+  remote_user: ubuntu
+  sudo: yes
+  vars_files: 
+    - group_vars/tomcat-servers
+
+  roles:
+    - tomcat
+    - deploy

@@ -1,0 +1,20 @@
+---
+- name: Install tomcat 7
+  apt: name=tomcat7 state=present
+
+- name: Configure Tomcat server
+  template: src=server.xml dest=/var/lib/tomcat7/conf/
+  notify: restart tomcat
+
+- name: Configure Tomcat users
+  template: src=tomcat-users.xml dest=/var/lib/tomcat7/conf/
+  notify: restart tomcat
+
+- name: Install Tomcat init script
+  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat7 mode=0755
+
+- name: Start Tomcat
+  service: name=tomcat7 state=started enabled=yes
+
+- name: wait for tomcat to start
+  wait_for: port={{http_port}}

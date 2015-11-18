@@ -1,0 +1,20 @@
+---
+# copy our war file 
+- name: Deploy war file
+  sudo: yes
+  synchronize: src=/home/kasunr/Downloads/productization.war dest=/var/lib/tomcat7/webapps/ 
+  register: war_downloaded
+
+- name: Set correct permissions
+  file: 
+    path: /var/lib/tomcat7/webapps/
+    owner: tomcat7
+    group: tomcat7
+  when: war_downloaded.changed
+  register: war_deployed
+ 
+- name: Restart tomcat
+  service:
+    name: tomcat7
+    state: restarted
+  when: war_deployed.changed
