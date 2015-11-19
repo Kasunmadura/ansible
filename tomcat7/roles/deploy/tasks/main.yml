@@ -10,14 +10,12 @@
     path: /var/lib/tomcat7/webapps/productization.war
     owner: tomcat7
     group: tomcat7
+    mode: 0755
   when: war_downloaded.changed
   register: war_deployed
- 
-- name: Restart tomcat
-  service:
-    name: tomcat7
-    state: restarted
-  when: war_deployed.changed
+
+- name: Start Tomcat
+  service: name=tomcat7 state=restarted enabled=yes 
 
 - name: Set correct permissions app
   file: 
