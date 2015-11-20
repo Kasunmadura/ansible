@@ -1,5 +1,11 @@
 ---
 # copy our war file 
+
+- name: delete a ROOT directory
+  shell: rm -rf /var/lib/tomcat7/webapps/ROOT/
+#  file:  path=/var/lib/tomcat7/webapps/ROOT/ state=absent recurse=yes
+  sudo: yes
+
 - name: Deploy war file
   sudo: yes
   synchronize: src=/home/kasunr/Downloads/productization.war dest=/var/lib/tomcat7/webapps/ 
