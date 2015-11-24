@@ -1,7 +1,7 @@
 Author:Kasun Rathanayaka
 Web:kasunmadura.com
 
-Cassandra Cluster Deployment
+#Cassandra Cluster Deployment
 
 Requires Ansible 1.2 or newer
 Expects Ubuntu hosts
