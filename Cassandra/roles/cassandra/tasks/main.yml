@@ -1,0 +1,49 @@
+---
+- name : Add Java repo
+  apt_repository: repo='ppa:webupd8team/java'
+
+# Change the 22x to match the latest version. For example, use 23x if Cassandra 2.3 is the latest version:
+
+- name: Add Cassandra repo
+  apt_repository: repo='deb http://www.apache.org/dist/cassandra/debian 22x main' state=present
+
+- name: Add Cassandra Src-repo
+  apt_repository: repo='deb-src http://www.apache.org/dist/cassandra/debian 22x main' state=present
+
+# Add an apt key by id from a keyserver 
+- name: Add apt-keys for cassandra
+  apt_key: keyserver=pgp.mit.edu id=F758CE318D77295D
+
+- apt_key: keyserver=pgp.mit.edu id=2B5C1B00
+- apt_key: keyserver=pgp.mit.edu id=0353B12C
+
+- name : Update apt repo
+  apt: update_cache=yes
+
+- name: Install oracle java8
+  apt: name=oracle-java8-installer state=present
+
+- name: Install oracle-java8-set-default
+  apt: name=oracle-java8-set-default state=present
+
+- name: Install Cassandra
+  apt: name=cassandra state=present force=yes 
+
+- name: Configure Cassandra 
+  template: src=cassandra.yaml dest=/etc/cassandra/cassandra.yaml mode=0755
+
+- name: Copy cassendra config
+  copy: src=config.sh dest=/opt/ mode=0755
+
+- name: Set ip for seed varibale in Cassendra config-listen address
+  shell: /opt/config.sh 
+
+#- name: Set ip for seed varibale in Cassendra config
+#  shell: 'sed -i.bak "s/^\(rpc_address: \).*/\1$(ifconfig  eth0 | awk '/inet addr/{print substr($2,6)}')/" /etc/cassandra/cassandra.yaml' 
+
+- name: Install Cassandra init script
+  copy: src=cassandra dest=/etc/init.d/cassandra  mode=0755
+
+- name: reStart Cassandra
+  service: name=cassandra state=restarted enabled=yes
+

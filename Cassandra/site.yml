@@ -1,0 +1,11 @@
+#This playbook deploys a Cassandra Cluster. 
+
+- hosts: cassandra_servers
+  remote_user: ubuntu
+  sudo: yes
+  vars_files:
+  - group_vars/cassandra
+
+  roles:
+    - ntp
+    - cassandra
