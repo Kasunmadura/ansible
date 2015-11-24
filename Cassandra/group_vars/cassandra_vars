@@ -1,7 +1,0 @@
-# Cassandra cluster name
-
-cluster_name: Kasun_new
-
-### Add with comars # 10.100.1.1,10.11.21.1
-seed_ips:
-
