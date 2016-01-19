@@ -1,0 +1,22 @@
+---
+- name: Add nodejs 0.10.37 repo list 
+  apt_repository: repo='ppa:chris-lea/node.js' state=present
+
+- name: Apt Package Update
+  apt:  update_cache=yes
+
+- name: Install Node js 
+  apt: name=nodejs state=latest 
+
+- name: Copy Deb package 
+  synchronize: src=exchange-admin_0.0.5_all.deb dest=/home/appuser/
+
+- name: Install Exchange package 
+  apt: deb=/home/appuser/exchange-admin_0.0.5_all.deb 
+
+- name: Configure Exchange Env
+  template: src=prototype-exchangeadmin-configuration/dev/exchange-admin dest=/etc/default/
+ 
+- name: Restart Exchange 
+  shell: service exchange-admin restart
+
